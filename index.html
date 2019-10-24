@@ -1,0 +1,423 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JavaScript Notes</title>
+        <style>
+        html, body {
+              line-height: 1.8em;
+               
+        } img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+              display: none; 
+            
+        } ul{
+           width: 60vw;
+           position: relative;
+           left: 50%;
+           margin: 20px;
+           margin-left: -30vw;
+           font-size: 20px;
+           font-weight: 300; 
+        } li {
+            margin: 20px;
+            width: 100%;
+            
+        } header {
+            text-align: center;
+        } h3 {
+            background-color: green;
+            color: white;
+            width: 25vw;
+            text-transform: uppercase; 
+            text-align: center; 
+        } i {
+            /* background: #ff5d00;
+            color: white;
+            font-style: normal;
+            padding: 3px; */ // this is the old colouring, keep in case you want to change it back
+            
+            font-style: normal;
+            font-style: normal; 
+            background: #e0e2e5;
+            color: #d80808;
+            font-weight: 200;
+            padding: 2px; //new colouring
+        } b {
+            color: green;
+            /* these make me happy */
+            
+        } #grid i {
+            color: green;
+        } li li {
+            margin: 15px;
+        } .indenter {
+            background: yellow;
+            visibility: hidden;
+        } .spec {
+           /* background: #ff5d00;
+            color: white;
+            font-style: normal;
+            padding-left: 30px;
+            padding: 10px; */ //old style, keep in case you want to change back 
+            
+            background: #e0e2e5;
+           // color: #d80808;
+            font-weight: 200;
+            
+            padding: 2px;
+        } .type2 {
+             background: grey;
+            color: white;  
+        } #themes {
+            float: right;
+            cursor: pointer;
+        } @media (orientation: portrait) {
+            ul {
+                width: 100vw;
+                left: 0;
+                top: 0;
+                margin: 0;
+            }
+        }
+              
+      </style>
+      <script>
+        let dark = false; 
+
+        function changeTheme() {
+          if (!dark) {
+            dark = true; 
+            document.body.style.backgroundColor = 'grey';
+            document.body.style.color = 'white';        
+            document.getElementById('themes').innerHTML = 'Light theme';
+          } else {
+            dark = false; 
+            document.body.style.backgroundColor = 'white';
+            document.body.style.color = 'black';        
+            document.getElementById('themes').innerHTML = 'Dark theme';
+          }
+        }
+
+//document.getElementById("themes").click(); //remove this later
+      </script>
+    </head>
+    <body>
+        <button id="themes" onclick="changeTheme();">Dark Mode</button>
+        
+        
+       
+        <ul>
+            <header><h1>JavaScript Notes</h1></header>
+            <h3 style="text-align: center">Recall</h3>
+            <li> if <i>arr.indexOf(element)</i> = -1, that element is not in the array</li>
+            <h3 style="text-align: center">New things</h3>
+            <li><i>var</i> to declare globally, <i>let</i> to declare once locally. <i>const</i> is like let but read-only, cannot be reassigned (can still reassign elements in array/properties in object declared with const). <i>Object.freeze(obj)</i> to completely prevent any mutation of an object</li>
+            <li><i>do{}while()</i> will iterate once before checking condition is true, as opposed to a <i>while(){}</i> loop which checks first</li>
+            <li>recall - unshift() adds to the front, push() to the end, shift() removes from the front, pop() removes from the end</li>
+            <li><i>arr.splice(index, howmany, item1...lastitem)</i> allows you to remove any number of consecutive elements anywhere in the array - both modifies the array and returns a new array containing the removed elements. Can also add elements to the array if you use more than two parameters</li>
+            <li><i>arr.slice(startindex,endindex)</i> will copy elements from an array, leaving the array untouched</li>
+            <li><i> parseInt(string, radix)</i> radix specifies the base of the number in the string (e.g. 2 = base 2, or binary)</li>
+            <li>REMEMBER to use parseFloat for floating points (decimals). Integers are whole numbers! parseInt will round</li>
+            <li>REMEMBER typeof (recognises Boolean, Null, Undefined, Number, String, Symbol)</li>
+            <li>.sort(function(a,b) { if (a &lt; b) {return 1;} if (a &gt; b) {return -1;} return 0 //same}</li>
+            <li>to remove duplicates using .filter(): will only return elements that have an index equalling the arr.indexOf (that element), i.e. only the first instance of the element
+                <ul>
+                    <li>
+                        var myArr = [1,2,3,3,3,3,3,5]; <br> <br>
+                        <i>myArr = myArr.filter(function(elem,index,self) {return self.indexOf(elem) == index; } ) </i>;
+                    </li>
+                </ul>
+            </li>
+            <li><b>CONDITIONAL (a.k.a. TERNARY) OPERATOR</b> = one line subsitute for an if-else statement: <br><br><i> condition ? statement-if-true : statement-if-false; </i>
+                <ul>
+                    <li> if (a &gt; b) {<br><span class="indenter">blah</span>return "blah"; <br>} else { <br><span class="indenter">blah</span>return "ok"; <br>}  <br><br> is equivalent to</li>
+                    <li> a &gt; b ? "blah": "ok"</li>
+                </ul>
+            </li>
+            <li>you can string conditional operators together (like a long if... else if... else if... else) statement ==&gt; put another condition in the "statement-if-false" part e.g. <br> <br> <i>return (a === b) ? "a and b are equal" : (a &gt; b) ? "a is greater" : "b is greater";</i></li>
+            <li><b>ARROW FUNCTIONS</b> = shorthand for functions
+                <ol>
+                    <li> instead of <br> var/let/const myFunction = function () { <br>
+                     <span class="indenter"></span><span class="indenter"></span> return true; <br>
+                    } <br> you can use</li>
+                    <li>var/let/const myFunction = () =&gt; { <br>
+                     <span class="indenter"></span><span class="indenter"></span> return true; <br>
+                    } <br> or</li>
+                    <li><i>var myFunction = () =&gt; true;</i>(if the function just contains a return)</li>
+                    <li>YOU CAN PASS ARGUMENTS INTO ARROW FUNCTIONS e.g.<i>var myFunction = (num) =&gt; num*2;</i> </li>
+                    <li>REALLY REALLY GOOD SHORTHAND FOR .sort(), .reduce(), .filter() etc. higher order functions that take functions as arguments</li>
+                    <li>e.g. [1,3,6,4,5].sort(function(a,b){return a - b;}); is the same as [1,3,6,4,5].sort((a,b) =&gt; a-b;)</li>
+                    <li>myArr.reduce(function(a,b){return a + b;}); vs <br> myArr.reduce((a,b) =&gt; a + b);</li>
+                    <li>myArr.filter (function(elem, index, self) { return self.indexOf(elem) == index; });  vs <br> myArr.filter ((elem, index, self) =&gt; self.indexOf(elem) == index);</li>
+                </ol>
+            </li>
+            <li><i>myArr.forEach(function (element){ console.log(element); }); </i> or <i> myArr.forEach( (element) =&gt; { console.log(element); }); </i></li>
+            <li><i>myArr.map((x) =&gt; x*3)</i> or myArr.map(function(element) {return element * 3}); will multiply every element in an array by 3 e.g. [1, 4, 9, 16].map(x =&gt; x * 2) returns [2,8,18,32]</li>
+            <li><b>SET DEFAULT FOR WHEN THE ARGUMENT ISN'T SPECIFIED</b>, e.g. function sayHello (name = "Anon") {return "hello" + name + "uwu !";}</li>
+            <li><b>TEMPLATE LITERALS</b> You can use "template literals" to make multi-line strings, with 'string interpolation' (i.e. inserting variables into the string). Uses backticks <i>`</i> not quotes (<i>'</i> or <i>"</i>). Can be multi-line (instead of having to use <i>\n</i>). Add variables using <i>${variable name}</i> e.g. </li>
+            <aside>
+                var playerObject = { <br> 
+                <span class="indenter">blah</span>     name: "Johnny",  <br> 
+                 <span class="indenter">blah</span>    age: 83,  <br> 
+                 <span class="indenter">blah</span>    sex: 'm',  <br> 
+                 <span class="indenter">blah</span>    height: 1.8,  <br> 
+                 <span class="indenter">blah</span>    weight: 80  <br> 
+                } <br> 
+                 <br> 
+                var welcome = `Welcome, ${playerObject.name}, you idiot.  <br> 
+                You are ${playerObject.age} years old. Your BMI is ${playerObject.weight/(playerObject.height^2)}. Wow. ` <br>  
+                 <br> 
+                console.log(welcome) prints:  <br> 
+                // Welcome, Johnny, you idiot.  <br> 
+                // You are 83 years old. Your BMI is 26.6666. Wow <br> 
+            </aside>
+            <li><b>IMPORTING functions and code from external files: </b> in the past we used <i>require()</i>, but that imports the entire file, which might not be necessary. In ES6, you can use the <i>import</i> keyword to select what parts of the file to import, saving time and memory. Syntax: <i>import { only the function/variable you want } from "file_path_goes_here"</i> Usually ./file path. Even if the file has 200 functions, it will only import the 1 function you want. </li>
+            <li>In order to be able to import functions/variables, you have to 'export them' in the file you're taking them from, using: <i>export { functionName }</i> for functions and <i>export var age = 5;</i> or just <i>var age = 5; export { age }</i> for variables. You can do multiple at one time like <i>export { functionName, age}</i>. This is called the "named export" syntax. </li>
+            <li>to import everything from a file, use <i>import *</i>: <i>import * as object_with_name_of_your_choice from "file_path_goes_here"</i>. You are creating an object that receives all the imported values, which you can call whatever you want. Use dot notation on that object to call your imported values. e.g. <i>import * as myMathModule from "math_functions"; myMathModule.add(2,3);</i></li>
+            <li>you can also use the "default export" syntax, usually only used when one value is being exported from the file, or to create a fallback value. e.g. <i>export default function (x,y) {return x + y}</i> 
+                <ol>
+                    <li>because it's a 'fallback', you can only have 1 default export per file</li>
+                    <li>can't use this with var/let/const</li>
+                    <li>to import a default export, you need to use a different <i>import</i> syntax, with no curly brackets!: <i>import add from "math_functions"</i></li>
+                </ol>
+            </li>
+            <li><b>REST OPERATOR</b> so a function can take a variable number of arguments function countArguments(...args) {return "You passed" + arg.length + "arguments!"} (or var countArguments = (...args) =&gt; "You passed" + arg.length + "arguments!";). Can sum with .reduce(), modify with .map() etc.</li>
+            <li><b>Spread an array</b> with ...arr (this is called the "rest operator") - "...arr" is equivalent to all the array's elements separated by commas e.g. arr2 = [...arr1],  Math.max() takes arguments separated by a list, so that Math.max(arr) will not work, you'd have to use Math.max().apply(null,arr), or Math.max(...arr)/only works in place</li>
+            <li>You can <i class="type2">Copy an array</i> with the spread operator: <i>let thatArray = [...thisArray]</i></li>
+            <li>You can <i class="type2">Combine arrays</i> with the spread operator: <i>let thisArray = ['sage', 'rosemary', 'parsley', 'thyme']; let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander']; </i> thatArray now equals ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander'] </li>
+            <li><b>Destructuring Arrays</b> = A quick way of assigning elements from the array to variables. <i>var [a, b] = [1, 2, 3, 4, 5, 6];</i>  a now = 1 (the first element), b = 2 (the second element). You can also access any index you want by using commas <i>const [a, b,,, c] = [1, 2, 3, 4, 5, 6];</i> a =1, b = 2, and c = 5.   </li>
+            <li>You can also use the "rest operator" (...arr) to collect the rest of the elements in a seperate array e.g. <i>const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];</i> a= 1, b = 2, arr = [3,4,5,7]. Only works as the last in the list. </li>
+            <h3>OBJECTS</h3>
+            <li>object = collection of 'key-value' pairs, "data mapped to unique identifiers called properties or keys", = special types of variables that contain many variables/named values, called properties</li>
+            <aside>
+                let FCC_User = { <br>
+                       <span class="indenter">blah</span> username: 'awesome_coder', <br>
+                        <span class="indenter">blah </span>followers: 572, <br>
+                        <span class="indenter">blah </span>points: 1741, <br>
+                        <span class="indenter">blah </span>completedProjects: 15 <br>
+                    }; 
+            </aside>
+            <li>access properties with dot notation <i>FCC_User.followers (=572)</i> or with brackets <i>FCC_User['followers']</i> ==&gt; with quotes = evaluated as a property name</li>
+            <li>YOU CAN USE BRACKET NOTATION + PROPERTY NAME/KEY TO CHECK IF A PROPERTY ACTUALLY EXISTS IN AN OBJECT ==&gt; if passed a key, will return the value of that key, or undefined if not present</li>
+            <li><b>Destructuring Objects</b> To assign values from an object into variables, use var/let/const {propertyName1, propertyName2, propertyName3} = objectName. You will now have three new variables, with the names propertyName1, propertyName2, propertyName3. YOU WRITE DOWN THE OBJECT'S KEYS OF THE KEY-VALUE PAIRS YOU WANT TO CONVERT INTO VARIABLES, AND IT CONVERTS THEM INTO VARIABLES LIKE VAR KEY = VALUE.</li>
+            <aside class="spec">
+                        var myObject = { <br>
+                        <span class="indenter">blah</span> name: "Joseph", <br>  
+                        <span class="indenter">blah</span> age: 32 <br> 
+                        } <br> <br> 
+                        var {name, age} = myObject; <br>  
+                        you now have two variables, name (which equals "Joseph") and age (which equals 32)
+            </aside>
+            <li>if you want to store values into variables with different names, use var {propertyName1: a, propertyName2: b, propertyName3: c} = objectName. "get the field propertyName1 and copy it into a", etc.</li>
+            <li>You can even destructure an object to break it down and pass it as separate parameters into a function. e.g. <i>function profileUpdate({ name, age, nationality, location, the keys of whatever object properties you want to use in the function }) {...}</i> LOOKS GOOD + only the fields that are needed are copied inside the function.</li>
+            <li>remove a key-value pair from an object with "delete" keyword: <i>delete FCC_User.points;</i></li>
+            <li>to check if an object has a property, use either <i>FCC_User.hasOwnProperty('followers')</i> method or <i>'followers' in FCC_User;</i> = returns true or false</li>
+            <li>to iterate through all the keys in an object, use <i>for (let a in FCC_User) {console.log(a)}; //logs: username followers points completedProjects</i> ==&gt; defined variable 'a' that is reset to object's keys during each iteration of loop through object </li>
+            <li>syntax =  "for (var/let/const variableName in objectName) {}"</li>
+            <div class="spec">let ownProps = []; <br> for (let variableName in duck) { <br> <span class="indenter">blah</span> if(duck.hasOwnProperty(variableName)) { <br> <span class="indenter">blah</span> <span class="indenter">blah</span> ownProps.push(variableName);
+  <br> <span class="indenter">blah</span> }
+<br> }</div>
+            <li><i>Object.keys(FCC_User)</i> will generate an array containing all the keys stored in the "FCC_User" object</li>
+            <li>method = function inside an object </li>
+           <li> use <i>this</i> to refer to the object the method is associated with e.g.
+                <ol>
+                    <li>var person = {name: "Greg", greeting: function() { return "my name is " + this.name;}; person.greeting() to call method</li>
+                </ol>
+           </li>
+           <li>previously when defining functions inside objects (methods), you had to use the <i>function</i> keyword, like above. With ES6, you can remove the function keyword and colon all together like this: var person = {name: "Greg", greeting() { return "my name is " + this.name;}; </li>
+           <li>constructor = function that creates new objects
+                <ol>
+                    <li> function Car () { <br> <span class="indenter">blah</span> this.name = "Honda"; <br> <span class="indenter">blah</span> this.color = "red"; <br> <span class="indenter">blah</span> this.numWheels = 4; <br> }</li>
+                    <li>name should be capitalised</li>
+                    <li>must use <i>this</i> -&gt; refers to the new object the function will create</li>
+                </ol>
+           </li>
+           <li>to create a new object with the constructor, call the constructor i.e. <i>var shagginWagon = new Car();</i> (creates an instance of Car called shagginWagon) </li>
+           <li>Alternatively, you can use <i>var shagginWagon = Object.create(Car.prototype)</i> ==&gt; creates a new object called 'shagginWagon' and sets 'Car.prototype' as its prototype. By setting the prototype of the new object to be Car's prototype, you're essentially giving 'shagginWagon' the same recipe as any other instance of Car (covered below) </li>
+            <li>THE CONSTRUCTOR CAN TAKE PARAMETERS e.g. <br> <br> function Car (name, color) { <br> <span class="indenter">blah</span> this.name = name; <br> <span class="indenter">blah</span> this.color = color; <br> <span class="indenter">blah</span> this.numWheels = 4; <br> } <br> <i>var shagginWagon = new Car("Lexus", "lime green")</i></li>
+            <li>(ES6 has new syntax for constructor functions, using the <i>class</i> keyword. Use this if you want. )
+                <ol>
+                    <li>
+                        class Car {                      <br> 
+                         <span class="indenter">blah</span>  constructor (name, color) { <br> 
+                           <span class="indenter">blah</span><span class="indenter">blah</span>     this.name = name;  <br> 
+                            <span class="indenter">blah</span><span class="indenter">blah</span>    this.color = color;  <br> 
+                           <span class="indenter">blah</span><span class="indenter">blah</span>     this.numWheels = 4;  <br> 
+                             <span class="indenter">blah</span> } <br> 
+                        } <br> 
+                    </li>
+                </ol>
+           </li>
+            <li> shagginWagon <i>instanceof</i> Car, can check if an object is an instance of a constructor function, return true or false </li>
+            <li>objects created with a constructor function will have a <i class="type2">constructor</i> property that == the constructor function (i.e. you can use <i class="type2">shagginWagon.constructor === Car</i>, to check if the shagginWagon object is an instance of Car constructor function</li>
+            <li> Object's <i>prototype</i> is shared among all instances of the object (save you from duplicating variables within the object. e.g. <i>Car.prototype.numWheels = 4</i></li>
+            <li>YOU CAN SET A PROTOTYPE AS AN OBJECT ITSELF, <i> e.g. Car.prototype = {numWheels: 4, start: function(){return "vroom"} } </i> </li>
+            <li>Car.prototype.isPrototypeOf(shagginWagon) will return true</li>
+            <h3>Inheritance</h3>
+            <li><b>INHERITANCE IN JAVASCRIPT = uses 'prototype chaining'</b> 
+                <ol>
+                    <li> Say you have an object constructor function called "Animal()" (we will call this the 'supertype') </li>
+                    <li> You want to reuse Animal's properties and methods inside other constructor functions, such as  one we've called "Dog()" (we will call this the 'subtype' or 'child'), without defining them again</li>
+                    <li>to do this, set the prototype of the subtype, Dog(), to be a new instance of Animal() i.e. <i>Dog.prototype = new Animal();</i> ==&gt; this line rewrites the default prototype of the Dog function, instead making it 'point to' an object created by Animal() - all the properties and methods that exist on an instance of Animal() will now exist on Dog.prototype +  Dog function has access to all the SuperType properties and methods. 
+                            
+                                <ol>
+                                    <li>Apparently, annoyingly, using the "let newObj = new constructorFunction()" syntax has some drawbacks when doing inheritance in Javascript, so you're supposed to use the "let newObj = Object.create(constructorFunction.prototype)" syntax</li>
+                                    <li><i>Dog.prototype = Object.create(Animal.prototype)</i></li>
+                                </ol>
+                    </li>
+                    
+                    <aside class="spec">
+                        function Animal() { } <br>
+                             <span class="indenter">blah</span> Animal.prototype = { <br>
+                             <span class="indenter">blah</span> constructor: Animal, <br>
+                             <span class="indenter">blah</span> eat: function() { <br>
+                               <span class="indenter">blah</span>  console.log("nom nom nom"); <br>
+                             <span class="indenter">blah</span> } <br>
+                            };  <br>
+<br>
+                            function Dog() { } <br>
+                            Dog.prototype = new Animal(); //alternatively, Dog.prototype = Object.create(Animal.prototype); <br>
+                            <br>
+                            let beagle = new Dog(); <br>
+                            beagle.eat();  // Should print "nom nom nom", as Dog inherits all of Animal's properties, including the eat method <br>
+                                                </aside>
+                <li>Just because a constructor function inherits its prototype from another,'supertype' constructor function, doesn't mean its prototype can't have its own properties and methods, in addition to the inherited ones ==&gt; i.e. adding behaviour unique to Dog objects. Remember, the inheritence line overwrites the prototype of the Dog() constructor function, so any additional methods/properties you want to add to the Dog's prototype have to be added after this line. Just add functions in the same way you normally would. e.g. <b>Dog.prototype.bark = function() { console.log("woof!");};</b> instances of Dog will now have both eat() and bark() methods </li>
+                </ol>
+             </li>
+            <li>when you set one object to inherit from another object, it also inherits that object's constructor property. (i.e. beagle.constructor will return function Animal {...} rather than Dog () {...} like it should). To fix this you can manually set Dog's constructor property to the Dog object <i>Dog.prototype.constructor = Dog;</i></li>
+            <li>You can overwrite an inherited method in the same way, just by adding a method to <i>SubType.prototype </i> with the same method name as the one to overwrite e.g. <i>Dog.prototype.eat = function () {console.log("dog ain't hungry")};</i> </li>
+            <li>remember <i>Object</i> is the supertype for all objects in javascript. as Car.prototype is itself an object, its prototype will be Object.prototype -&gt; shagginWagon's prototype = Car.prototype, Car.prototype's prototype = Object.prototype</li>
+            <li>for unrelated objects (<i>bird</i> and <i>plane</i>) that you want to share methods, use <i>mixins</i> rather than inheritance ==&gt; mixin = a function that takes an object as an argument, and gives it a method e.g. </li>
+            <aside class="spec">
+                let flyMixin = function(obj) { <br> 
+                     <span class="indenter">blah</span>obj.fly = function() { <br> 
+                            <span class="indenter">blah</span><span class="indenter">blah</span>console.log("Flying, wooosh!"); <br>
+                    <span class="indenter">blah</span> } <br> 
+                }; <br> 
+                flyMixin(bird); 
+                flyMixin(plane); 
+                // allows the same .fly() method to be reused by any unrelated objects, such as bird and plane. Both bird.fly() and plane.fly will now log "Flying, wooosh!" 
+            </aside>
+            <li><b>Private properties:</b> object properties so far have been public, i.e. can be accessed and changed outside of the object's definition, 'externally'. To make properties private, declare a variable (with <i>var/let/const</i>) within the constructor function ==&gt; changes the scope of the variable to be only locally available within the constructor function, rather than globally ==&gt; THIS MEANS, the property can only be accessed &amp; changed by methods also within the constructor function (because they are declared in the same context, and functions in javascript always have access to the context in which they are created ==&gt; this is called <i>closure</i>) e.g. </li>
+            <aside class="spec"> 
+            function Bird() { <br> 
+              <span class="indenter">blah</span>       let hatchedEgg = 10; // private property <br> 
+                 <span class="indenter">blah</span>    this.getHatchedEggCount = function() { // publicly available method that a Bird object can use <br> 
+                           <span class="indenter">blah</span> <span class="indenter">blah</span>  return hatchedEgg; <br> 
+                    <span class="indenter">blah</span>  }; <br> 
+            } <br> 
+             <br> 
+                let ducky = new Bird(); <br> 
+                ducky.getHatchedEggCount(); // returns 10 = 'priveledged', has access to the 'private' variable hatchedEgg because they are declared in the same function = same context  <br> 
+                
+            </aside>
+            <li>ES6: You Can Use Getters and Setters to Control Access to an Object:
+                    <ol>
+                        <li>Getters: = functions that just 'get'/returns an object's private variable without directly acessing the private variable. 'Obtains values'.</li>
+                        <li>Setters: = functions that 'set'/modify an object based on a value passed into it, as an argument. </li>
+                        <li>To invoke these functions, you use <i>get</i> and <i>set</i> INSIDE the object constructor function itself. Using the new <i>class</i> syntax in ES6 for constructor functions: </li>
+                        <li>
+                            class Book { <br> 
+                   <span class="indenter">bla</span>   constructor (author) { <br> 
+                                  <span class="indenter">bla</span> <span class="indenter">bla</span>   this._author = author;  <br> 
+                                 <br> 
+                            <span class="indenter">bla</span>  <span class="indenter">bla</span>        get writer () { <br> 
+                            <span class="indenter">bla</span>   <span class="indenter">bla</span> <span class="indenter">bla</span>           return this._author;  <br> 
+                              <span class="indenter">bla</span>   <span class="indenter">bla</span>     } <br> 
+                                 <br> 
+                             <span class="indenter">bla</span>    <span class="indenter">bla</span>     set writer (newAuthor) { <br> 
+                             <span class="indenter">bla</span>  <span class="indenter">bla</span> <span class="indenter">bla</span>           this._author = newAuthor;  <br> 
+                             <span class="indenter">bla</span>  <span class="indenter">bla</span>       } <br> 
+                              <span class="indenter">bla</span>   } <br> 
+                            } <br> 
+                             <br> 
+                            let heartOfDarkness = new Book('not sure');  <br> 
+                            console.log(heartOfDarkness.writer); //logs 'not sure' <br> 
+                            heartOfDarkness.writer = "Joseph Conrad";  <br> 
+                            console.log(heartOfDarkness.writer); //logs 'Joseph Conrad' <br> 
+                                
+                        </li>
+                    </ol>
+            </li>
+            <li>you can immediately execute a function without giving it a name or storing it in a variable with <i>(function () {console.log("bro!")})() </i>. Called an "Immediately Invoked Function Expression" </li>
+            <li><b>Modules (important):</b> the above immediately invoked function expression can be used to group 'related functionality' into a single object (called a <i>module</i>). For example, grouping two mixins into a module object:  </li>
+            <aside class="spec">
+                let motionModule = (function () {  <br>
+              <span class="indenter">blah</span>      return { <br>
+                       <span class="indenter">blah</span> <span class="indenter">blah</span>  glideMixin: function (obj) { <br>
+                          <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>   obj.glide = function() { <br>
+                             <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>    console.log("Gliding on the water"); <br>
+                           <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>  }; <br>
+                       <span class="indenter">blah</span> <span class="indenter">blah</span>  }, <br>
+                      <span class="indenter">blah</span> <span class="indenter">blah</span>   flyMixin: function(obj) { <br>
+                        <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>     obj.fly = function() { <br>
+                               <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>  console.log("Flying, wooosh!"); <br>
+                            <span class="indenter">blah</span> <span class="indenter">blah</span> <span class="indenter">blah</span>  }; <br>
+                        <span class="indenter">blah</span> <span class="indenter">blah</span> } <br>
+                   <span class="indenter">blah</span>  } <br>
+                }) (); // The two parentheses cause the function to be immediately invoked, returning an object called "motionModule", which CONTAINS BOTH OF THE MIXIN FUNCTIONS AS METHODS <br> <br> 
+                //both mixins are now packaged into one object (this gives you a way of packaging all e.g. motion related mixins) <br> <br> 
+                motionModule.glideMixin(duck); <br> 
+                duck.glide();
+                
+            </aside>
+    
+        <h3>Functional Programming</h3>
+            <li><i>Callbacks</i> = functions that are passed into another function to decide the invocation of that function (example is the callback function in filter, which tells filter() what to do)</li>
+            <li><i>first class functions</i> = functions that can be assigned to a variable, passed into another function, or returned from another function </li>
+            <li><i>higer order functions</i> take a function as argument or return a function. Functions passed in or returned from another function are called a <i>lambda</i></li>
+            <li>Functions are considered <i>First Class Objects</i>in JavaScript, which means they can be used like any other object. They can be saved in variables, stored in an object, or passed as function arguments.</li>
+            <li><i>imperative programming</i> = giving a computer a bunch of statements to tell a computer how to perform a task e.g. for loop (fac!)</li>
+            <li>functional programming = a form of declarative programming. You tell the computer what you want done by calling a method/function. JavaScript has many predefined methods that handle common tasks (so you don't need to tell the browser exactly what to do). E.g. map can handle iterating over an array instead of for, helps to avoid semantic errors </li>
+            <li>a core principle in functional programming is not to change things (function arguments, global variables). Changes lead to bugs! changes = <i>mutations</i>, outcomes = <i>side effects</i>, <i>pure functions</i> do not cause any side effects</li>
+            <li>core principle: always declare your dependencies explicitly. If a function depends on a variable or object being present, pass that function or variable directly into the function as an argument</li>
+            <li><i>.map()</i> method iterates over and applies a callback function to each element in an array, RETURNS A NEW ARRAY (of the same length - without changing the original array). It's equivalent to a for loop that iterates through the array, and pushes callbackFunction(arr[i]) to a new array, and returns that new array:
+                <ol>
+                    <li>recall syntax myArr.map(function(element) {return element * 3}); or <i>myArr.map((x) =&gt; x*3)</i> will multiply every element in an array by 3 e.g. [1, 4, 9, 16].map(x =&gt; x * 2) returns [2,8,18,32]</li>
+                    <li>if you have  an array of objects with multiple keys (e.g. Title, rating, audienceScore), can also use map() to create an array of just one of those keys: e.g. <i> simpleList = watchList.map(function(elem){return element.Title}) </i> </li>
+                </ol>
+                </li>
+            <li><i>.filter()</i> method. Again, iterates over every element in the array, applies the logic/criteria inside the callback to each element in the array, if that element returns true based on that criteria, it is included in the "new" array (DOES NOT MODIFY THE ORIGINAL ARRAY)
+                <ol>
+                     <li>to create an array with only elements &gt; 3: e.g. <i>[1,3,8,4,5,6,5].filter(function(elem) {return elem &gt; 3 } )</i></li>
+                    <li>to create an array without duplicates: e.g. <i>[1,2,3,3,3,3,3,5].filter(function(elem,index,self) {return self.indexOf(elem) == index; } )</i></li>
+                </ol>
+            </li>
+            <li>Recall: <i>arr.slice(startindex,endindex)</i> will copy the elements from an array, leaving the original array untouched. Can take 2 arguments, where to begin the slice and where to end the slice (END ONLY is non-inclusive). Without arguments it will copy the entire array. <i>var myArr = ["Cat", "Dog", "Tiger", "Zebra"].slice(1,3)</i> newArr = ["Dog", "Tiger"]</li>
+            <li>Recall: To remove any number of consecutive elements from anywhere in an array use <i>arr.splice(index, howmany, item1...lastitem)</i> - both modifies the array and returns a new array containing the removed elements!!! 1st argument = index of where to start removing items, 2nd argument = the number of items to remove (default is to remove through to end, if not provided) Can also add elements to the array if you use more than two parameters</li>
+            <li>use slice() if you don't want to mutate the original array, .splice() if you do</li>
+            <li><i>concatenation</i> = "to join items end to end". You can combine arrays using the <i>arr1.concat(arr2)</i> method. concat() method is called on arr1, takes arr2 as an argument, adds arr2 to the end of arr1. Returns a new array, does not mutate original arrays. e.g. <i>[1, 2, 3].concat([4, 5, 6])</i> returns [1, 2, 3, 4, 5, 6] 
+                    
+                    <ol>
+                        <li>.push() mutates the array it's called on. In functional programming, we want to use non-mutating functions. Use <i>.concat()</i> instead to add elements to the end of an array without mutating the original arrays.</li>
+                    </ol>
+            </li>
+            <li><i>.reduce()</i> method = the most general of all array operations in JS. Allows interaction between two different elements of the array, unlike "<i>filter()</i>" or "<i>map()</i>". Can solve almost any array processing problem with reduce(), e.g. comparing elements of the array, or adding them together. <ol>
+                    <li>syntax: to add all the elements of an array together, <i>[1,2,3,4,5].reduce(function(a,b){return a + b})</i> or just <i>[1,2,3,4,5].reduce((a,b) =&gt; a + b)</i> </li>
+                </ol>
+            </li>
+            <li><i>.sort()</i> method sorts the elements of the array it's called on. It optionally takes a callback function as an argument (otherwise it will sort based on string Unicode point value). 
+            <br> Provide the callback function with two arguments, let's call them "a" and "b". 'a' and 'b' represent two different elements of the array, which are chosen by a sorting algorithm (There are many different sorting algorithms but the faster ones will not compare every value in a linear way.).
+            <br>To specify how to sort the array items, the callback funtion should return +1 if the value should be shifted left, -1 for right. 
+            <br> Technically you should allow for duplicate values and return 0 if an exact match is found.
+            <br> changes the original array (MUTATES THE ARRAY IN PLACE) 
+                <ol>
+                    <li>To arrange numbers in an ascending order (or strings alphabetically also, as JS compares strings by their alphabetical index), use: <i>[1,3,5,2,3,6].sort(function(a,b) {if (a &lt; b) {return -1} else if (a &gt; b){return +1} else {return 0}})</i> or with arrow notation (remember this because it's very useful) <i>[1,3,5,2,3,6].sort((a,b) =&gt; a &lt; b ? -1 : a &gt; b ? +1 : 0)</i>, <i>["mirror","book","adult","lamp"].sort((a,b) =&gt; a &lt; b ? -1: a &gt; b? +1: 0)</i></li>
+                    <li>alternatively, <i>[1,3,5,2,3,6].sort((a,b) =&gt; a - b)</i> also works</li>
+                    <li>To sort an array of strings by string length, use ['pen','aadvark','blood','application'].sort((a,b) =&gt; a.length - b.length)</li>
+                    <li>to avoid mutating the original array, concatenate an empty array to the one being sorted, then run the sort method: <i>origArr.concat([]).sort();</i></li>
+                </ol>
+            </li>
+            <li><i>.split()</i> method splits a string into an array of smaller strings.
+                <ol>
+                    <li>if you use a string arg, breaks up the string by that string e.g. "hello brother".split(" ") returns [hello, brother], "hello brother".split("") returns ["h", "e", "l", "l", "o", " ", "b", "r", "o", "t", "h", "e", "r"]</li>
+                    <li>YOU CAN ALSO USE REGULAR EXPRESSIONS TO BREAK UP THE STRING: e.g. by digits <i>"How9are7you2today".split(/\d/)</i> returns ["How", "are", "you", "today"]</li>
+                </ol>
+            </li>
+            <li> <i>.join()</i> method joins the elements of the array it's called on into 1 string, by whatever is given as an argument. e.g. ["I", "am", "ok"].join(" ") returns "I am ok". 
+            </li>
+            <li><i>.every()</i> method checks <b>every</b> element of an array to see if they meet criteria (set in the callback function), returns <i>true</i> if all elements pass, <i>false</i> if not all pass. e.g. to check if every element in an array is greater than 3 <i>[1, 5, 8, 0, 10, 11].every((elem) =&gt; elem &gt; 3)</i></li>
+            <li><i>.some()</i> method again cycles through every element of the array, but will return <i>true</i> if <b>any</b> element passes the criteria in the callback function, and <i>false</i> if none do. e.g. to check if any element in an array is less than 10 <i>[10, 50, 8, 220, 110, 11].some((elem) =&gt; elem &lt; 10)</i></li>
+            <li>The <i>arity</i> of a function is the number of arguments it requires. <i>Currying</i> a function means to convert a function of N arity into N functions of arity 1, by restructuring the original function so it takes one argument, then returns another function that takes the next argument and so on. e.g. //Un-curried function = <i>function unCurried(x, y) { return x + y}</i> ==&gt; unCurried(2,3) returns 5, //Curried function = <i>function curried(x) {return function(y){return x + y}}</i> ==&gt; curried(2)(3) returns 5. Do this when you don't know all the arguments for the function yet - so you can save each function call into a variable, which can take the next argument when available. e.g. <i>var temp = curried(6); temp(3) // returns 9</i>  </li>
+        </ul>
+        </body>
+        </html>
