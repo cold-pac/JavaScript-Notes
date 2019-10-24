@@ -115,7 +115,7 @@
             <li>recall - unshift() adds to the front, push() to the end, shift() removes from the front, pop() removes from the end</li>
             <li><i>arr.splice(index, howmany, item1...lastitem)</i> allows you to remove any number of consecutive elements anywhere in the array - both modifies the array and returns a new array containing the removed elements. Can also add elements to the array if you use more than two parameters</li>
             <li><i>arr.slice(startindex,endindex)</i> will copy elements from an array, leaving the array untouched</li>
-            <li><i>document.getElementsByClassName()</i> and <i>document.getElementsByTagName()</i> return a HTML collection, which is an array-like object of elements - you can convert this to an array with <i>Array.from()</i> (like list() in Python) and then iterate through it with <i>.forEach()</i> (or just use a for loop)</li>
+            <li><i>document.getElementsByClassName()</i> and <i>document.getElementsByTagName()</i> return an HTML collection, which is an array-like object of elements - you can convert this to an array with <i>Array.from()</i> (like list() in Python) and then iterate through it with <i>.forEach()</i> (or just use a for loop)</li>
             <li><i> parseInt(string, radix)</i> radix specifies the base of the number in the string (e.g. 2 = base 2, or binary)</li>
             <li>REMEMBER to use parseFloat for floating points (decimals). Integers are whole numbers! parseInt will round</li>
             <li>REMEMBER typeof (recognises Boolean, Null, Undefined, Number, String, Symbol)</li>
@@ -421,6 +421,7 @@
             <li>The <i>arity</i> of a function is the number of arguments it requires. <i>Currying</i> a function means to convert a function of N arity into N functions of arity 1, by restructuring the original function so it takes one argument, then returns another function that takes the next argument and so on. e.g. //Un-curried function = <i>function unCurried(x, y) { return x + y}</i> ==&gt; unCurried(2,3) returns 5, //Curried function = <i>function curried(x) {return function(y){return x + y}}</i> ==&gt; curried(2)(3) returns 5. Do this when you don't know all the arguments for the function yet - so you can save each function call into a variable, which can take the next argument when available. e.g. <i>var temp = curried(6); temp(3) // returns 9</i>  </li>
             <h3>Events</h3>
             <li>An event is whenever the user interacts with the webpage. Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it in the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with example.addEventListener('click', functionName); </li> 
+            <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
         </ul>
         </body>
         </html>
