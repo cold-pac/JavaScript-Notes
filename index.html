@@ -6,30 +6,32 @@
         html, body {
               line-height: 1.8em;
                
-        } img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
-              display: none; 
-            
-        } ul{
+        }
+        ul{
            width: 60vw;
            position: relative;
            left: 50%;
            margin: 20px;
-           margin-left: -30vw;
+           margin-left: -31vw;
            font-size: 20px;
            font-weight: 300; 
-        } li {
+        }
+        li {
             margin: 20px;
             width: 100%;
             
-        } header {
+        }
+        header {
             text-align: center;
-        } h3 {
+        }
+        h3 {
             background-color: green;
             color: white;
             width: 25vw;
             text-transform: uppercase; 
             text-align: center; 
-        } i {
+        }
+        i {
             /* background: #ff5d00;
             color: white;
             font-style: normal;
@@ -41,18 +43,26 @@
             color: #d80808;
             font-weight: 200;
             padding: 2px; //new colouring
-        } b {
+        }
+        b {
             color: green;
             /* these make me happy */
             
-        } #grid i {
+        }
+        code {
+            font-size: 0.8em;
+        }
+        #grid i {
             color: green;
-        } li li {
+        }
+        li li {
             margin: 15px;
-        } .indenter {
+        }
+        .indenter {
             background: yellow;
             visibility: hidden;
-        } .spec {
+        }
+        .spec {
            /* background: #ff5d00;
             color: white;
             font-style: normal;
@@ -64,13 +74,16 @@
             font-weight: 200;
             
             padding: 2px;
-        } .type2 {
+        }
+        .type2 {
              background: grey;
             color: white;  
-        } #themes {
+        }
+        #themes {
             float: right;
             cursor: pointer;
-        } @media (orientation: portrait) {
+        }
+        @media (orientation: portrait) {
             ul {
                 width: 100vw;
                 left: 0;
@@ -420,8 +433,82 @@
             <li><i>.some()</i> method again cycles through every element of the array, but will return <i>true</i> if <b>any</b> element passes the criteria in the callback function, and <i>false</i> if none do. e.g. to check if any element in an array is less than 10 <i>[10, 50, 8, 220, 110, 11].some((elem) =&gt; elem &lt; 10)</i></li>
             <li>The <i>arity</i> of a function is the number of arguments it requires. <i>Currying</i> a function means to convert a function of N arity into N functions of arity 1, by restructuring the original function so it takes one argument, then returns another function that takes the next argument and so on. e.g. //Un-curried function = <i>function unCurried(x, y) { return x + y}</i> ==&gt; unCurried(2,3) returns 5, //Curried function = <i>function curried(x) {return function(y){return x + y}}</i> ==&gt; curried(2)(3) returns 5. Do this when you don't know all the arguments for the function yet - so you can save each function call into a variable, which can take the next argument when available. e.g. <i>var temp = curried(6); temp(3) // returns 9</i>  </li>
             <h3>Events</h3>
-            <li>An event is whenever the user interacts with the webpage. Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it in the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with example.addEventListener('click', functionName); </li> 
+            <li>An event is whenever the user interacts with the webpage. Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it in the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with example.addEventListener('click', functionName); </li>
+            <li>Function executed on the event can take an 'event' argument, which you can call - <i>event.key</i> gives you the key pressed for any keyboard event</li>
             <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
+            <h3>REST APIs</h3>
+            <li>Use an API to get information from a web server.</li>
+            <li>AJAX = "asynchronous (as in runs in the background) JavaScript and XML" - can send and retrieve data from a web server asynchronously</li>
+            <li>API "endpoints" (the url) will output JSON (javascript objects) or XML (a markup language like HTML)</li>
+            <li>REST APIs expect requests to be one of these forms ('methods')
+                <ul>
+                    <li>GET: request only for 'read-only' data</li>
+                    <li>POST: write request to the target source</li>
+                    <li>PUT: updating pre-existing information in a database</li>
+                    <li>PATCH</li>
+                    <li>DELETE</li>
+                </ul>
+            </li>
+            <li>jQuery library has an <i>.ajax()</i> function that makes using AJAX very easy (much more complicated in vanilla js - have to create a new XMLHttpRequest object etc). Note: the .ajax() function takes multiple parameters as an object! like when you want to change multiple things in CSS with jquery (<i>$('div').style({height: '2vh', width: '3vw'})</i>
+                <pre>
+                    <code>
+                        $.ajax({
+                            type: 'GET',
+                            url: 'send-ajax-data.php',
+                            dataType: "JSON", // data type expected from server
+                            success: function (data) {
+                                console.log(data);
+                            },
+                            error: function(error) {
+                                console.log('Error: ' + error);
+                            }
+                        });
+                    </code>
+                </pre>
+                or specifically for GET requests
+                <pre>
+                    <code>
+                        $.get('send-ajax-data.php').done(function(data) {
+                            console.log(data);
+                        }).fail(function(data) {
+                            console.log('Error: ' + data);
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>JavaScript has a new (since 2017) 'built in' <i>fetch()</i> function
+                <pre>
+                    <code>
+                        fetch('examples/example.json') //pass it the API url. Fetch call returns a 'response object'
+                        .then(function(response) {      //response object passed to then
+                            // Do stuff with the response
+                        })
+                        .catch(function(error) {        //if response does not resolve, .catch takes over
+                            console.log('Looks like there was a problem: \n', error);
+                        });
+                    </code>
+                </pre>
+                to actually READ the response object, you have to call a response a method on the response object (e.g. <i>.json()</i> reads the response, makes the response object resolve to JSON)
+                <pre>
+                    <code>
+                        fetch('examples/example.json')
+                        .then(function(response) {
+                          if (!response.ok) {
+                            throw Error(response.statusText);
+                          }
+                          // Read the response as json.
+                          return response.json();
+                        })
+                        .then(function(responseAsJson) {
+                          // Do stuff with the JSON
+                          console.log(responseAsJson);
+                        })
+                        .catch(function(error) {
+                          console.log('Looks like there was a problem: \n', error);
+                        });
+                    </code>
+                </pre>
+            </li>
         </ul>
         </body>
         </html>
