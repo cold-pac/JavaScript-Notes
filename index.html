@@ -476,7 +476,7 @@
                     </code>
                 </pre>
             </li>
-            <li>JavaScript has a new (since 2017) 'built in' <i>fetch()</i> function
+            <li>JavaScript has a new (since 2017) 'built in' <i>fetch()</i> function (WAY, WAY EASIER TO USE)
                 <pre>
                     <code>
                         fetch('examples/example.json') //pass it the API url. Fetch call returns a 'response object'
@@ -488,7 +488,7 @@
                         });
                     </code>
                 </pre>
-                to actually READ the response object, you have to call a response a method on the response object (e.g. <i>.json()</i> reads the response, makes the response object resolve to JSON)
+                to actually READ the response object, you have to call a response method on the response object (e.g. <i>.json()</i> reads the response, makes the response object resolve to JSON). Note: the reason you have two <i>.then()</i> after the fetch() is to keep modifying that response object (i.e. first you convert it to JSON, then you use 'then' again when you want to access it)
                 <pre>
                     <code>
                         fetch('examples/example.json')
