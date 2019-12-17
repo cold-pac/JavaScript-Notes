@@ -49,6 +49,9 @@
             /* these make me happy */
             
         }
+        .alt {
+            color: black;
+        }
         code {
             font-size: 0.8em;
         }
@@ -510,11 +513,13 @@
                 </pre>
             </li>
             <h3>Helsinki Course/Full Stack</h3>
-            <li>The web browser and server communicate using the HTTP protocol. The "Network" tab in the chrome developer tools shows how the browser and server communicate. You can see the browser <b>fetch the contents of the page</b> and <b>download images</b> from the server</li>
-            <li>If you click on the event and then "Headers" you can see more information: Under the <b>General</b> header, you can see the Request Method, and whether the request was successful (the Status Code)</li>
-            <li>Under <b>Response Headers</b> you can see the size of the response (in bytes), the exact time of the response, the "Content-Type" - HTML, image/png... </li>
-            <li>The <b>Response</b> tab shows the actual fetched data</li>
+            <li>The <b class="alt">web browser</b> and <b class="alt">server</b> communicate using the HTTP protocol. The "Network" tab in the chrome developer tools shows how the browser and server have communicated. You can see the browser <b>fetch the contents of the page</b> and <b>download images</b> from the server</li>
+            <li>If you click on each event and then "Headers" you can see more information: Under the <b>General</b> header, you can see the "Request Method", and whether the request was successful (the Status Code)</li>
+            <li>Under <b class="alt">Response Headers</b> you can see the size of the response (in bytes), the exact time of the response, the "Content-Type" - HTML, image/png... </li>
+            <li>The <b class="alt">Response</b> tab shows the actually fetched data</li>
+            <li>HTTP defines a set of request methods. A request to a web address using the GET method (HTTP GET request) "requests a representation of the specified resource", i.e. only retrieves data</li>
             <li>Status Code 200 = request successful</li>
+            <li>Usually: first the browser does a HTTP GET request to the server to fetch the HTML code of the page. The <b class="alt">img</b> tag prompts the browser to fetch the image. The browser renders the HTML page and image to the screen. (the HTML page begins to render before the image has been fetched from the server)</li>
         </ul>
         </body>
         </html>
