@@ -433,7 +433,7 @@
             <li><i>.some()</i> method again cycles through every element of the array, but will return <i>true</i> if <b>any</b> element passes the criteria in the callback function, and <i>false</i> if none do. e.g. to check if any element in an array is less than 10 <i>[10, 50, 8, 220, 110, 11].some((elem) =&gt; elem &lt; 10)</i></li>
             <li>The <i>arity</i> of a function is the number of arguments it requires. <i>Currying</i> a function means to convert a function of N arity into N functions of arity 1, by restructuring the original function so it takes one argument, then returns another function that takes the next argument and so on. e.g. //Un-curried function = <i>function unCurried(x, y) { return x + y}</i> ==&gt; unCurried(2,3) returns 5, //Curried function = <i>function curried(x) {return function(y){return x + y}}</i> ==&gt; curried(2)(3) returns 5. Do this when you don't know all the arguments for the function yet - so you can save each function call into a variable, which can take the next argument when available. e.g. <i>var temp = curried(6); temp(3) // returns 9</i>  </li>
             <h3>Events</h3>
-            <li>An event is whenever the user interacts with the webpage. Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it in the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with example.addEventListener('click', functionName); </li>
+            <li>An event is whenever the user interacts with the webpage ("click", "mouseover", "mouseout", "keypress", "load"...). Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it inline inside the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with <i>example.addEventListener('click', functionName);</i></li>
             <li>Function executed on the event can take an 'event' argument, which you can call - <i>event.key</i> gives you the key pressed for any keyboard event</li>
             <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
             <h3>REST APIs</h3>
@@ -509,6 +509,12 @@
                     </code>
                 </pre>
             </li>
+            <h3>Helsinki Course/Full Stack</h3>
+            <li>The web browser and server communicate using the HTTP protocol. The "Network" tab in the chrome developer tools shows how the browser and server communicate. You can see the browser <b>fetch the contents of the page</b> and <b>download images</b> from the server</li>
+            <li>If you click on the event and then "Headers" you can see more information: Under the <b>General</b> header, you can see the Request Method, and whether the request was successful (the Status Code)</li>
+            <li>Under <b>Response Headers</b> you can see the size of the response (in bytes), the exact time of the response, the "Content-Type" - HTML, image/png... </li>
+            <li>The <b>Response</b> tab shows the actual fetched data</li>
+            <li>Status Code 200 = request successful</li>
         </ul>
         </body>
         </html>
