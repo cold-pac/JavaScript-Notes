@@ -439,7 +439,13 @@
             <li>An event is whenever the user interacts with the webpage ("click", "mouseover", "mouseout", "keypress", "load"...). Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it inline inside the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with <i>example.addEventListener('click', functionName);</i></li>
             <li>Function executed on the event can take an 'event' argument, which you can call - <i>event.key</i> gives you the key pressed for any keyboard event</li>
             <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
-            <h3>REST APIs</h3>
+            <li>You can prevent default behaviour of elements for an event in the event handlers by returning <i>false</i></li>
+            <pre><code>
+                &lt;a href="#" onclick="console.log('The link was clicked.'); return false"&gt;
+                  Click me
+                &lt;/a&gt;
+            </code></pre>
+            <h3>REST APIs (merge these notes with the notes below)</h3>
             <li>Use an API to get information from a web server.</li>
             <li>AJAX = "asynchronous (as in runs in the background) JavaScript and XML" - can send and retrieve data from a web server asynchronously</li>
             <li>API "endpoints" (the url) will output JSON (javascript object notation) or XML (a markup language like HTML, which you need to parse)</li>
