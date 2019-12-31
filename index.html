@@ -93,6 +93,16 @@
                 top: 0;
                 margin: 0;
             }
+            li {
+                list-style-type: none;
+                font-size: 16px;
+                font-family: Monospace, serif;
+                margin-top: 5vh;
+                line-height: 2em;
+            }
+            button {
+                display: none;
+            }
         }
               
       </style>
@@ -436,7 +446,7 @@
             <li><i>.some()</i> method again cycles through every element of the array, but will return <i>true</i> if <b>any</b> element passes the criteria in the callback function, and <i>false</i> if none do. e.g. to check if any element in an array is less than 10 <i>[10, 50, 8, 220, 110, 11].some((elem) =&gt; elem &lt; 10)</i></li>
             <li>The <i>arity</i> of a function is the number of arguments it requires. <i>Currying</i> a function means to convert a function of N arity into N functions of arity 1, by restructuring the original function so it takes one argument, then returns another function that takes the next argument and so on. e.g. //Un-curried function = <i>function unCurried(x, y) { return x + y}</i> ==&gt; unCurried(2,3) returns 5, //Curried function = <i>function curried(x) {return function(y){return x + y}}</i> ==&gt; curried(2)(3) returns 5. Do this when you don't know all the arguments for the function yet - so you can save each function call into a variable, which can take the next argument when available. e.g. <i>var temp = curried(6); temp(3) // returns 9</i>  </li>
             <h3>Events</h3>
-            <li>An event is whenever the user interacts with the webpage ("click", "mouseover", "mouseout", "keypress", "load"...). Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it inline inside the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with <i>example.addEventListener('click', functionName);</i></li>
+            <li>An event is whenever the user interacts with the webpage. A user's interaction with the different elements of a webpage can cause a collection of various different kinds of events to be triggered ("click", "mouseover", "mouseout", "keypress", "load"...). Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it inline inside the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with <i>example.addEventListener('click', functionName);</i></li>
             <li>Function executed on the event can take an 'event' argument, which you can call - <i>event.key</i> gives you the key pressed for any keyboard event</li>
             <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
             <li>You can prevent default behaviour of elements for an event in the event handlers by returning <i>false</i></li>
@@ -445,6 +455,14 @@
                   Click me
                 &lt;/a&gt;
             </code></pre>
+            <li>
+                <ul>
+                    <li>There are two ways of event propogation in the HTML DOM API, when an event occurs in an element inside another element, and both elements have a registered handler/listener for that event</li>
+                    <li>Event bubbling: the event is first "captured" and handled by the innermost element and propogated to outer elements</li>
+                    <li>Event capturing: the event is first "captured" by the outermost element and propogated to the inner elements</li>
+                    <li><i>target.addEventListener(type, listener[, useCapture])</i></li>
+                </ul>
+            </li>
             <h3>REST APIs (merge these notes with the notes below)</h3>
             <li>Use an API to get information from a web server.</li>
             <li>AJAX = "asynchronous (as in runs in the background) JavaScript and XML" - can send and retrieve data from a web server asynchronously</li>
