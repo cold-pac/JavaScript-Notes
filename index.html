@@ -1,11 +1,10 @@
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JavaScript Notes</title>
         <style>
         html, body {
               line-height: 1.8em;
-               
         }
         ul{
            width: 60vw;
@@ -424,7 +423,7 @@
             </li>
             <li><i>.sort()</i> method sorts the elements of the array it's called on. It optionally takes a callback function as an argument (otherwise it will sort based on string Unicode point value). 
             <br> Provide the callback function with two arguments, let's call them "a" and "b". 'a' and 'b' represent two different elements of the array, which are chosen by a sorting algorithm (There are many different sorting algorithms but the faster ones will not compare every value in a linear way.).
-            <br>To specify how to sort the array items, the callback funtion should return +1 if the value should be shifted left, -1 for right. 
+            <br>To specify how to sort the array items, the callback function should return +1 if the value should be shifted left, -1 for right.
             <br> Technically you should allow for duplicate values and return 0 if an exact match is found.
             <br> changes the original array (MUTATES THE ARRAY IN PLACE) 
                 <ol>
@@ -448,16 +447,15 @@
             <h3>Events</h3>
             <li>An event is whenever the user interacts with the webpage. A user's interaction with the different elements of a webpage can cause a collection of various different kinds of events to be triggered ("click", "mouseover", "mouseout", "keypress", "load"...). Event handlers are the older way of dealing with events, just on + the name of the event as an attribute  (HTML dom document.getElementById("example").onclick = or actually putting it inline inside the element itself). Event listeners are a newer model. You can have as many event listeners as you want per element per event (whereas you're only allowed one event handler per element per event). add them with <i>example.addEventListener('click', functionName);</i></li>
             <li>Function executed on the event can take an 'event' argument, which you can call - <i>event.key</i> gives you the key pressed for any keyboard event</li>
-            <li>use <i>.removeEventListener('click', funtionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
+            <li>use <i>.removeEventListener('click', functionName)</i> to remove the event listener. Need to actually have a functionName not just function(){} to remove that event listener</li>
             <li>You can prevent default behaviour of elements for an event in the event handlers by returning <i>false</i></li>
             <pre><code>
                 &lt;a href="#" onclick="console.log('The link was clicked.'); return false"&gt;
                   Click me
                 &lt;/a&gt;
             </code></pre>
-            <li>
+            <li> There are two ways of event propogation in the HTML DOM API, when an event occurs in an element inside another element, and both elements have a registered handler/listener for that event:
                 <ul>
-                    <li>There are two ways of event propogation in the HTML DOM API, when an event occurs in an element inside another element, and both elements have a registered handler/listener for that event</li>
                     <li>Event bubbling: the event is first "captured" and handled by the innermost element and propogated to outer elements</li>
                     <li>Event capturing: the event is first "captured" by the outermost element and propogated to the inner elements</li>
                     <li><i>target.addEventListener(type, listener[, useCapture])</i></li>
