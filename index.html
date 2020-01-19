@@ -398,6 +398,7 @@
             <li>core principle: always declare your dependencies explicitly. If a function depends on a variable or object being present, pass that function or variable directly into the function as an argument</li>
             <li><i>.map()</i> method iterates over and applies a callback function to each element in an array, RETURNS A NEW ARRAY (of the same length - without changing the original array). It's equivalent to a for loop that iterates through the array, and pushes callbackFunction(arr[i]) to a new array, and returns that new array:
                 <ol>
+                    <li>You can pass a second parameter to the callback function representing the indices of the array: <b>notes.map((element, index) => ...)</b></li>
                     <li>recall syntax myArr.map(function(element) {return element * 3}); or <i>myArr.map((x) =&gt; x*3)</i> will multiply every element in an array by 3 e.g. [1, 4, 9, 16].map(x =&gt; x * 2) returns [2,8,18,32]</li>
                     <li>if you have  an array of objects with multiple keys (e.g. Title, rating, audienceScore), can also use map() to create an array of just one of those keys: e.g. <i> simpleList = watchList.map(function(elem){return element.Title}) </i> </li>
                 </ol>
